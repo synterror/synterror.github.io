@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="{{ config.description }}">
+        <meta name="keywords" content="{{ config.tags }}">
+        <title>{{ "{}: {}".format(config.title, config.description) | title }}</title>
+
+        <link rel="stylesheet" type="text/css" href="{{ blogurl('assets/light/blog.css') }}">
+        <script type="application/javascript">
+            var originalTitleText = '{{ config.title }}';
+            var titleTextModified = '{{ config["title-hover"] }}';
+
+            window.addEventListener('DOMContentLoaded', function() {
+                var title = document.getElementById('title-link');
+
+                title.addEventListener('mouseenter', function() {
+                    title.textContent = titleTextModified;
+                });
+
+                title.addEventListener('mouseleave', function() {
+                    title.textContent = originalTitleText;
+                });
+            });
+        </script>
+
+        {% block head %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <header class="main-header">
+            <h1 class="main-title"><a id="title-link" href="{{ blogurl('index.html') }}">{{ config.title }}</a></h1>
+            <h2 class="main-subtitle">{{ config.description }}</h2>
+        </header>
+
+        <main class="main">
+            {% block body %}
+            {% endblock %}
+        </main>
+
+        <footer class="main-footer">
+            <div>
+                <p>Don't <a href="{{ config.contact }}" target="_blank" title="Hit me up on the issues section!">contact me</a>, I hate everybody.</p>
+            </div>
+        </foooter>
+    </body>
+</html>

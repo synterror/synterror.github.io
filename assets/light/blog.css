@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Press+Start+2P&family=Ubuntu&display=swap");
+
+* {
+    font-family: "Ubuntu";
+}
+
+:root {
+    font-size: 14pt;
+    background-color: #fffefe;
+    color: #111;
+}
+
+body {
+    min-height: 800px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+p {
+    font-family: "Courier Prime";
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    font-family: inherit;
+}
+
+footer a,
+.post a {
+    color: #ff7777;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover,
+.post a:hover {
+    text-shadow: #f77 0px 0px 8px;
+}
+
+.post-title {
+    font-size: 3rem;
+    margin-bottom: 0;
+}
+
+.post-subtitle {
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+.main-title {
+    font-family: "Press Start 2P";
+    font-size: 3rem;
+    margin-top: 0;
+}
+
+.main-subtitle {
+    color: #f77;
+}
+
+.main-subtitle:before {
+    content: "/*";
+}
+
+.main-subtitle:after {
+    content: "*/";
+}
+
+.post {
+    padding: 1rem;
+}
+
+.post-preview-title-date {
+    font-weight: normal;
+    font-size: 1rem;
+    color: #7777;
+    text-align: right;
+}
+
+.post-preview-title-date:before {
+    content: "// ";
+    vertical-align: baseline;
+}
+
+.main,
+.main-header {
+    width: 80vw;
+    max-width: 900px;
+    margin: auto;
+    padding-top: 3rem;
+}
+
+.main-header {
+    text-align: center;
+    letter-spacing: 0.5rem;
+    margin-bottom: 3rem;
+}
+
+.main-header h2 {
+    letter-spacing: 0.25rem;
+    word-spacing: 0.5rem;
+}
+
+.post-preview-container:last-of-type {
+    margin-bottom: 4rem;
+}
+
+.main-footer {
+    left: 0;
+    width: 100%;
+    margin-top: 5rem;
+}
+
+.main-footer > div {
+    width: 80vw;
+    max-width: 900px;
+    margin: auto;
+}
+
+.post:hover {
+    box-shadow: #1111 10px 10px 10px;
+}
