@@ -76,6 +76,7 @@ def generate_posts(config, get_template, posts_path, output_path, force=False):
 
 def make_context(config, **extra_content):
     return {
+        'set': set,
         'config': config,
         'urljoin': urljoin,
         'blogurl': lambda rel_url: urljoin(config.get('home', '/'), rel_url),

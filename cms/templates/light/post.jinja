@@ -1,5 +1,10 @@
 {% extends "base.jinja" %}
 
+{% block head %}
+    <meta name="description" content="{{ post.title }}: {{ post.subtitle }}">
+    <meta name="keywords" content="{{ ', '.join(set((config.tags or []) + (meta.tags or []))) }}">
+{% endblock %}
+
 {% block body %}
     <section class="post">
         <h1 class="post-title">{{ post.title }}</h1>

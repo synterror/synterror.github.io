@@ -1,5 +1,10 @@
 {% extends "base.jinja" %}
 
+{% block head %}
+    <meta name="description" content="{{ config.description }}">
+    <meta name="keywords" content="{{ ', '.join(config.tags) }}">
+{% endblock %}
+
 {% block body %}
     {% for ppath, pmeta in meta.items() %}
         <div class="post-preview-container">

@@ -1,7 +1,10 @@
 title: SYNTAX TERROR
 title-hover: SYNT4X T3RR0R
 description: Coding, rants and undefined behaviour
-tags: software-engineering, coding, rants
+tags:
+  - software-engineering
+  - coding
+  - rants
 template: light
 post-preview-count: 5
 post-preview-length: 400
