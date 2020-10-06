@@ -86,7 +86,7 @@ def make_context(config, **extra_content):
 def generate_single_post(config, get_template, post_path: Path, output_path, force=False):
     meta = read_single_post_metadata(post_path)
     title, subtitle, body = read_post_text(post_path.with_suffix('.md'))
-    output_post_folder = output_path / post_path.parent
+    output_post_folder = output_path / 'posts' / str(meta['date'].year)
     slug = meta.get('slug')
     output_post_path = output_post_folder / \
         '{}.html'.format(slug or post_path.stem)
@@ -147,12 +147,12 @@ def read_previews(posts_path, output_path, preview_count=5, preview_length=100):
 
     for p, t in zip(previews, text_paths):
         post_meta = meta[p]
+        prev_key = Path('posts') / str(post_meta['date'].year)
 
-        if 'slug' in post_meta:
-            prev_key = output_path / \
-                str(post_meta['date'].year) / '{}.html'.format(post_meta['slug'])
+        if post_meta.get('slug'):
+            prev_key /= '{}.html'.format(post_meta['slug'])
         else:
-            prev_key = Path(p).with_suffix('.html')
+            prev_key /= '{}.html'.format(p.stem)
 
         prev_key = str(prev_key).replace(os.path.sep, '/')
         prev_data = {
@@ -166,15 +166,17 @@ def read_previews(posts_path, output_path, preview_count=5, preview_length=100):
     return res
 
 
-def read_posts_text(paths: [Path], max_body_length=None):
+def read_posts_text(paths, max_body_length=None):
     texts = {}
 
     for p in paths:
         title, subtitle, body = read_post_text(p)
-        body_short = md.markdown(body[:max_body_length])
+        body_short = body[:max_body_length]
 
         if len(body_short) < len(body):
             body_short += '...'
+
+        body_short = md.markdown(body_short)
 
         texts[p] = {
             'title': title,

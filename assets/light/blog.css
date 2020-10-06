@@ -16,14 +16,17 @@ body {
     box-sizing: border-box;
 }
 
-p {
+p, .post li {
     font-family: "Courier Prime";
+}
+
+a, b, i, em {
+    font-family: inherit;
 }
 
 a {
     color: inherit;
     text-decoration: none;
-    font-family: inherit;
 }
 
 footer a,
@@ -66,10 +69,6 @@ footer a:hover,
     content: "*/";
 }
 
-.post {
-    padding: 1rem;
-}
-
 .post-preview-title-date {
     font-weight: normal;
     font-size: 1rem;
@@ -108,7 +107,7 @@ footer a:hover,
 .main-footer {
     left: 0;
     width: 100%;
-    margin-top: 5rem;
+    margin-top: 10rem;
 }
 
 .main-footer > div {
@@ -117,6 +116,39 @@ footer a:hover,
     margin: auto;
 }
 
-.post:hover {
+.post-preview-container {
+    padding: .5rem;
+}
+
+.post-preview-container:hover {
     box-shadow: #1111 10px 10px 10px;
+}
+
+.post {
+    padding: 1rem;
+    font-size: 18pt;
+}
+
+.post img {
+    display: block;
+    margin: 2rem auto;
+    max-width: 600px;
+}
+
+.post ul, .post ol {
+    margin: 2rem auto;
+}
+
+.post li {
+    margin: .5rem;
+}
+
+.post p {
+    text-align: justify;
+    line-height: 125%;
+    margin: 1.5rem auto;
+}
+
+.post p > img + em {
+    font-size: 0.8rem;
 }

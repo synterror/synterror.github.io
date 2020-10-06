@@ -4,8 +4,9 @@ description: Coding, rants and undefined behaviour
 tags: software-engineering, coding, rants
 template: light
 post-preview-count: 5
-post-preview-length: 100
+post-preview-length: 400
 contact: https://github.com/synterror/synterror
 home: https://synterror.github.io/
 folders:
   site: ..
+  posts: ../sources

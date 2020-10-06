@@ -35,7 +35,7 @@ def site():
 
 
 @site.command('generate')
-@click.option('--force/-f', default=False)
+@click.option('--force', is_flag=True)
 @click.pass_context
 def site_generate(ctx, force):
     blog_site.generate(ctx.obj['config'], force)
