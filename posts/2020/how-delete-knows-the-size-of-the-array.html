@@ -24,7 +24,7 @@
         </script>
 
     <meta name="description" content="Overriding the delete[] operator: How does delete[] know the length of the array?">
-    <meta name="keywords" content="programming, coding, c++, rants, software-engineering, memory-management">
+    <meta name="keywords" content="memory-management, software-engineering, rants, c++, coding, programming">
     </head>
 
     <body>
@@ -38,20 +38,20 @@
         <h1 class="post-title">Overriding the delete[] operator</h1>
             <h2 class="post-subtitle">How does delete[] know the length of the array?</h2>
     
-        <p>Today I was improving the memory management system of one of my projects and came across this known operator:</p>
+        <p>Today I was working on improving the memory management system of one of my projects and one of the tasks was to override the delete[] operator:</p>
 
 <pre><code>void operator delete[]  ( void* ptr ) noexcept;
 </code></pre>
 
-<p>And for the first time I looked at this function with different eyes as I'm not just redirecting it to some OS/language automagic memory allocation routine but am using my own memory management system, where I don't store the length of the array. So how come calling <code>delete[] something</code> still works?</p>
+<p>For the first time I looked at this function with different eyes as today I'm not just redirecting it to some OS/language automagic memory allocation routine but am using my own memory management system, where I don't store the length of the array. So how come calling <code>delete[] something</code> still works?</p>
 
-<p>Defining this operator in your source code will effectively override the default delete[] operator - or at least one of its many flavours. If you check the documentation on <a href="https://en.cppreference.com/w/cpp/language/delete">cppreference.com</a> you'll read:</p>
+<p>Defining this operator in your source code will effectively override the default delete[] operator - or at least one of its multiple flavours. If you check the documentation on <a href="https://en.cppreference.com/w/cpp/language/delete">cppreference.com</a> you'll read:</p>
 
 <blockquote>
   <p>If expression is not a null pointer and the deallocation function is not a destroying delete (since C++20), <strong>the delete expression invokes the destructor</strong> (if any) for the object that's being destroyed, or <strong>for every element of the array being destroyed</strong> (proceeding from the last element to the first element of the array).</p>
 </blockquote>
 
-<p>So how does the delete expression know the size of the array? It must certainly know given it will call the destructor <em>for every element in the array</em>. It must be stored somewhere and the most obvious location to store that would be the infamous allocation header. What's an allocation header?</p>
+<p>So how does the delete expression "know" the size of the array? It must certainly know given it will call the destructor <em>for every element of the array</em>. It must be stored somewhere and the most obvious location to store that would be the infamous allocation header. What's an allocation header?</p>
 
 <p>When you ask your OS to allocate some memory (normally by stating something like <code>new MyClass()</code> or by calling <code>malloc()</code>), the OS needs to store important information about that allocation, like its size, so that when you call <code>free()</code> or <code>delete my_instance</code> it'll know how much memory to reclaim. But that allocation header is not handled by the language, it's opaque and managed directly by the OS! So there is no way delete[] could possibly access that header safely. My guess is.. wait for it.. A SECOND HEADER!</p>
 
