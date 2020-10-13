@@ -24,7 +24,7 @@
         </script>
 
     <meta name="description" content="Overriding the delete[] operator: How does delete[] know the length of the array?">
-    <meta name="keywords" content="rants, c++, software-engineering, memory-management, coding, programming">
+    <meta name="keywords" content="programming, coding, c++, rants, software-engineering, memory-management">
     </head>
 
     <body>
@@ -48,7 +48,7 @@
 <p>Defining this operator in your source code will effectively override the default delete[] operator - or at least one of its many flavours. If you check the documentation on <a href="https://en.cppreference.com/w/cpp/language/delete">cppreference.com</a> you'll read:</p>
 
 <blockquote>
-  <p>If expression is not a null pointer and the deallocation function is not a destroying delete (since C++20), the delete expression invokes the destructor (if any) for the object that's being destroyed, or <strong>for every element of the array being destroyed</strong> (proceeding from the last element to the first element of the array).</p>
+  <p>If expression is not a null pointer and the deallocation function is not a destroying delete (since C++20), <strong>the delete expression invokes the destructor</strong> (if any) for the object that's being destroyed, or <strong>for every element of the array being destroyed</strong> (proceeding from the last element to the first element of the array).</p>
 </blockquote>
 
 <p>So how does the delete expression know the size of the array? It must certainly know given it will call the destructor <em>for every element in the array</em>. It must be stored somewhere and the most obvious location to store that would be the infamous allocation header. What's an allocation header?</p>

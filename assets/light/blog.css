@@ -16,7 +16,7 @@ body {
     box-sizing: border-box;
 }
 
-p, .post li {
+p, .post li, code, pre {
     font-family: "Courier Prime";
 }
 
@@ -27,6 +27,19 @@ a, b, i, em {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+pre {
+    font-size: 0.8rem;
+    padding: 1rem;
+}
+
+pre {
+    background-color: #bbb;
+}
+
+p code {
+    color: rgb(149, 151, 255);
 }
 
 footer a,
