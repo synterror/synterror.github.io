@@ -16,6 +16,18 @@ body {
     box-sizing: border-box;
 }
 
+table {
+    margin: auto;
+}
+
+td, th {
+    padding: 0 1em;
+}
+
+tbody > tr:nth-child(odd) {
+    background-color: #eee;
+}
+
 p, .post li, code, pre {
     font-family: "Courier Prime";
 }
@@ -164,4 +176,8 @@ footer a:hover,
 
 .post p > img + em {
     font-size: 0.8rem;
+}
+
+.align-right {
+    text-align: right;
 }
